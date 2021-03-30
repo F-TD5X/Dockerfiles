@@ -16,16 +16,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 	cd /src/YACReaderLibraryServer &&\
 	qmake-qt5 CONFIG+='server_standalone static' YACReaderLibraryServer.pro &&\
 	make -j `nproc` &&\
+	strip --strip-all YACReaderLibraryServer &&\
 	make install &&\
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps poppler-qt5 qt5-qtbase-x11 &&\
-    mkdir /src &&\
-    ldd /usr/bin/YACReaderLibraryServer  | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' /src/ &&\
-    apk del .run-deps &&\
-    cp /src/* /usr/lib &&\
-    rm -r /src
+	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
