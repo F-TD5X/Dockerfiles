@@ -25,10 +25,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
-VOLUME /comics
-
-EXPOSE 8080
-
 ENV LC_ALL=C.UTF8
 
 ENTRYPOINT ["YACReaderLibraryServer","start"]
