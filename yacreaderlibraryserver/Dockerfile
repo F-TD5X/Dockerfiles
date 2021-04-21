@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER ftd5x
 # sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories &&\
 
-RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch qt5-qtdeclarative-dev qt5-qtmultimedia-dev qt5-qtsvg-dev &&\
+RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev &&\
 	mkdir /src &&\
 	cd /src &&\
 	git clone https://github.com/YACReader/yacreader.git . &&\
@@ -24,7 +24,7 @@ RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite qt5-qtdeclarative qt5-qtmultimedia qt5-qtsvg
+	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
