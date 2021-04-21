@@ -22,7 +22,7 @@ jobs:
         id: prepare
         run: |
           DOCKER_IMAGE=ftd5x/yacreaderlibraryserver-alpine
-          DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/mips64,linux/mips64le,linux/arm/v6
+          DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/arm/v6
           VERSION=edge
 
           if [[ $GITHUB_REF == refs/tags/* ]]; then
