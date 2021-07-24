@@ -1,6 +1,12 @@
 name: buildx-yacreaderlibraryserver
 
 on:
+  workflow_dispatch:
+    inputs:
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
   pull_request:
     branches: yacreaderlibraryserver
   push:
