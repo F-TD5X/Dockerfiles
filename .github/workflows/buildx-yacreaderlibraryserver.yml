@@ -1,4 +1,4 @@
-name: buildx-yacreaderlibraryserver
+name: buildx-yacreaderlibraryserver-p7zip
 
 on:
   workflow_dispatch:
