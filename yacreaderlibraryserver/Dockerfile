@@ -1,6 +1,5 @@
 FROM alpine:latest
 MAINTAINER ftd5x
-# sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories &&\
 
 RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch &&\
 	mkdir /src &&\
