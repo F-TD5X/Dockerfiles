@@ -2,17 +2,10 @@ name: buildx-yacreaderlibraryserver
 
 on:
   workflow_dispatch:
-    inputs:
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
   pull_request:
     branches: yacreaderlibraryserver
   push:
     branches: yacreaderlibraryserver
-    tags:
-      - v*
     path:
       - 'yacreaderlibraryserver/Dockerfile'
 
@@ -29,19 +22,7 @@ jobs:
         run: |
           DOCKER_IMAGE=ftd5x/yacreaderlibraryserver-alpine
           DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/arm/v6
-          VERSION=edge
-
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            VERSION=nightly
-          fi
-
-          TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
-          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
-          fi
+          VERSION=p7zip
 
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${VERSION}
