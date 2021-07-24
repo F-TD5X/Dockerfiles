@@ -4,8 +4,7 @@ LABEL maintainer="ftd5x"
 ARG YACR_VERSION="9.8.1"
 
 RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
-	mkdir /tmp &&\
-	git clone -b master --single-branch https://github.com/selmf/unarr.git /tmp/unarr &&\
+	git clone -b master --single-branch https://github.com/selmf/unarr.git /tmp/unrar &&\
 	cd /tmp/unrar &&\
 	mkdir build && cd build &&\
 	cmake -DENABLE_7Z=ON .. &&\
