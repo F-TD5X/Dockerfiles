@@ -10,6 +10,7 @@ RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2
 	cmake -DENABLE_7Z=ON .. &&\
 	make && make install &&\
 	git clone https://github.com/YACReader/yacreader.git /src &&\
+	cd /src &&\
 	git checkout ${YACR_VERSION} &&\
 	cd /src/YACReaderLibraryServer &&\
 	qmake-qt5 CONFIG+='unrar server_standalone static' YACReaderLibraryServer.pro &&\
