@@ -3,9 +3,9 @@ name: buildx-yacreaderlibraryserver-p7zip
 on:
   workflow_dispatch:
   pull_request:
-    branches: yacreaderlibraryserver
+    branches: yacreaderlibraryserver-p7zip
   push:
-    branches: yacreaderlibraryserver
+    branches: yacreaderlibraryserver-p7zip
     path:
       - 'yacreaderlibraryserver/Dockerfile'
 
