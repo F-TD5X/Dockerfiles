@@ -3,13 +3,9 @@ name: buildx-yacreaderlibraryserver-unrar
 on:
   schedule:
     - cron: '0 0 */7 * *'
-  workflow_dispatch:
-  pull_request:
-    branches: yacreaderlibraryserver-unrar
   push:
     branches: yacreaderlibraryserver-unrar
-    paths:
-      - 'yacreaderlibraryserver/Dockerfile'
+  workflow_dispatch:
 
 jobs:
   buildx:
