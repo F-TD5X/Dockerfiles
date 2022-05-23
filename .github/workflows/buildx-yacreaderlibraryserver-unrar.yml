@@ -4,7 +4,8 @@ on:
   schedule:
     - cron: '0 0 */7 * *'
   push:
-    branches: yacreaderlibraryserver-unrar
+    branches: 
+      - yacreaderlibraryserver-unrar
   workflow_dispatch:
 
 jobs:
