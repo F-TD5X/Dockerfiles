@@ -1,13 +1,13 @@
 name: buildx-yacreaderlibraryserver-p7zip
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 */7 * *'
   push:
     branches: 
       - yacreaderlibraryserver-p7zip
-  workflow_dispatch:
-
+  
 jobs:
   buildx:
     runs-on: ubuntu-latest
