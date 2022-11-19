@@ -6,7 +6,7 @@ on:
     - cron: '0 0 */7 * *'
   push:
     branches: 
-      - f-td5x/yacreaderlibraryserver-p7zip
+      - yacreaderlibraryserver-p7zip
   
 jobs:
   buildx:
@@ -16,7 +16,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: "yacreaderlibraryserver-p7zip"
+          repository: "f-td5x/yacreaderlibraryserver-p7zip"
       -
         name: Prepare
         id: prepare

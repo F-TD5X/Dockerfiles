@@ -6,7 +6,7 @@ on:
     - cron: '0 0 */7 * *'
   push:
     branches: 
-      - f-td5x/yacreaderlibraryserver-unrar
+      - yacreaderlibraryserver-unrar
   
 jobs:
   buildx:
@@ -16,7 +16,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: "yacreaderlibraryserver-unrar"
+          repository: "f-td5x/yacreaderlibraryserver-unrar"
       -
         name: Prepare
         id: prepare
