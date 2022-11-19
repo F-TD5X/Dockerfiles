@@ -5,7 +5,7 @@ RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler
 	mkdir /src &&\
 	cd /src &&\
 	git clone https://github.com/YACReader/yacreader.git . &&\
-	git checkout tags/9.8.2 -b latest &&\
+	git checkout tags/9.10.0 -b latest &&\
 	cd compressed_archive/ &&\
 	wget https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2 -O p7zip_16.02_src_all.tar.bz2 &&\
 	tar xf p7zip_16.02_src_all.tar.bz2 &&\
