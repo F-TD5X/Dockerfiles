@@ -1,7 +1,7 @@
 FROM alpine:latest
 LABEL maintainer="ftd5x"
 
-ARG YACR_VERSION="9.8.2"
+ARG YACR_VERSION="9.10.0"
 
 RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
 	git clone -b master --single-branch https://github.com/selmf/unarr.git /tmp/unrar &&\
