@@ -6,7 +6,7 @@ on:
     - cron: '0 0 */7 * *'
   push:
     branches: 
-      - yacreaderlibraryserver-p7zip
+      - f-td5x/yacreaderlibraryserver-p7zip
   
 jobs:
   buildx:

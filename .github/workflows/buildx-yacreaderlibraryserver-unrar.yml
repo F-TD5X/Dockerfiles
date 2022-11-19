@@ -6,7 +6,7 @@ on:
     - cron: '0 0 */7 * *'
   push:
     branches: 
-      - yacreaderlibraryserver-unrar
+      - f-td5x/yacreaderlibraryserver-unrar
   
 jobs:
   buildx:
