@@ -23,7 +23,7 @@ jobs:
         id: prepare
         run: |
           DOCKER_IMAGE=ftd5x/caddy
-          DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/arm/v6
+          DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64
           VERSION=latest
           
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
