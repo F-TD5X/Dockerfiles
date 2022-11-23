@@ -13,7 +13,6 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     --with github.com/aksdb/caddy-cgi/v2   \
     --with github.com/greenpau/caddy-security   \
     --with github.com/abiosoft/caddy-json-parse \
-    --with github.com/RussellLuo/caddy-ext  \
     --with github.com/mholt/caddy-l4 \
     --with github.com/WingLim/caddy-webhook \
     --with github.com/ueffel/caddy-brotli   \
