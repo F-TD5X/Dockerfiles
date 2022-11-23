@@ -10,7 +10,7 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     --with github.com/caddyserver/replace-response  \
     --with github.com/caddyserver/ntlm-transport    \
     --with github.com/caddyserver/transform-encoder \
-    --with github.com/aksdb/caddy-cgi@v2   \
+    --with github.com/aksdb/caddy-cgi/v2   \
     --with github.com/greenpau/caddy-security   \
     --with github.com/abiosoft/caddy-json-parse \
     --with github.com/RussellLuo/caddy-ext  \
