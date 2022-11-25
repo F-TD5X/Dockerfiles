@@ -16,7 +16,7 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     --with github.com/mholt/caddy-l4 \
     --with github.com/WingLim/caddy-webhook \
     --with github.com/ueffel/caddy-brotli   \
-    --with github.com/mohammed90/caddy-ssh@latest  \
+    --with github.com/mohammed90/caddy-ssh@master  \
     --with github.com/imgk/caddy-trojan \
     --output caddy
 
