@@ -20,10 +20,12 @@ RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
+	apk add --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
+	useradd -r -u 1000 -g app app
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
 ENV LC_ALL=C.UTF8
+USER app
 
 ENTRYPOINT ["YACReaderLibraryServer","start"]
