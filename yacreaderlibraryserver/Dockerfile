@@ -3,7 +3,8 @@ LABEL maintainer="ftd5x"
 
 ARG YACR_VERSION="9.10.0"
 
-RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
+RUN addgroup -S app && adduser -S app -G app &&\
+	apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
 	git clone -b master --single-branch https://github.com/selmf/unarr.git /tmp/unrar &&\
 	cd /tmp/unrar &&\
 	mkdir build && cd build &&\
@@ -20,8 +21,7 @@ RUN apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
-	useradd -r -u 1000 -g app app
+	apk add --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
