@@ -1,7 +1,8 @@
 FROM alpine:latest
 MAINTAINER ftd5x
 
-RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch &&\
+RUN addgroup -S app && adduser -S app -G app &&\
+	apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch &&\
 	mkdir /src &&\
 	cd /src &&\
 	git clone https://github.com/YACReader/yacreader.git . &&\
@@ -18,8 +19,7 @@ RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
-	useradd -r -u 1000 -g app app
+	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
