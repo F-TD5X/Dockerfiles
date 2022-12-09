@@ -19,7 +19,7 @@ RUN apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler
 	rm -rf /src &&\
 	apk del .build-deps &&\
 	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
-	useradd -r -u 1001 -g app app
+	useradd -r -u 1000 -g app app
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
