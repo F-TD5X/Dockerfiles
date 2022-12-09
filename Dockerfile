@@ -22,6 +22,8 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
 
 FROM alpine:latest
 WORKDIR /caddy
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates && \
+    useradd -r -u 1000 -g app app
 COPY --from=builder /caddy/caddy /usr/bin/caddy
+USER app
 CMD ["/usr/bin/caddy","--config","/data/Caddyfile","--watch"]
