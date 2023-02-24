@@ -1,10 +1,12 @@
 FROM alpine:latest
 LABEL maintainer="ftd5x"
 
-ARG YACR_VERSION="9.10.0"
+ARG YACR_VERSION="9.11.0"
+ENV HOME="/config"
 
-RUN addgroup -S app && adduser -S app -G app &&\
-	apk add --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
+COPY ./* /
+
+RUN apk add --no-cache --virtual .build-deps cmake qt5-qtbase-dev wget git make unzip bzip2 xz g++ poppler-qt5-dev patch &&\
 	git clone -b master --single-branch https://github.com/selmf/unarr.git /tmp/unrar &&\
 	cd /tmp/unrar &&\
 	mkdir build && cd build &&\
@@ -21,11 +23,9 @@ RUN addgroup -S app && adduser -S app -G app &&\
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
-
-ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
+	apk add --no-cache --virtual .run-deps bzip2 xz poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
+	rm -rf /var/cache/apk/* &&\
+	/bootstrap.sh
 
 ENV LC_ALL=C.UTF8
-USER app
-
-ENTRYPOINT ["YACReaderLibraryServer","start"]
+ENTRYPOINT ["/bin/sh","/entrypoint.sh"]
