@@ -22,7 +22,7 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
 
 FROM alpine:latest
 WORKDIR /caddy
-RUN apk --no-cache add ca-certificates && \
+RUN apk --no-cache add ca-certificates vim && \
     addgroup -S app && adduser -S app -G app
 COPY --from=builder /caddy/caddy /usr/bin/caddy
 USER app
