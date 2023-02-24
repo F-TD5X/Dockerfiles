@@ -1,12 +1,15 @@
 FROM alpine:latest
 MAINTAINER ftd5x
+ARG YACR_VERSION="9.11.0"
+ENV HOME="/config"
 
-RUN addgroup -S app && adduser -S app -G app &&\
-	apk add --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch &&\
+COPY ./* /
+
+RUN apk add --no-cache --virtual .build-deps qt5-qtbase-dev wget git make unzip g++ poppler-qt5-dev patch &&\
 	mkdir /src &&\
 	cd /src &&\
 	git clone https://github.com/YACReader/yacreader.git . &&\
-	git checkout tags/9.10.0 -b latest &&\
+	git checkout ${YARC_VERSION} -b latest &&\
 	cd compressed_archive/ &&\
 	wget https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2 -O p7zip_16.02_src_all.tar.bz2 &&\
 	tar xf p7zip_16.02_src_all.tar.bz2 &&\
@@ -19,11 +22,10 @@ RUN addgroup -S app && adduser -S app -G app &&\
 	cd / &&\
 	rm -rf /src &&\
 	apk del .build-deps &&\
-	apk add --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite
+	apk add --no-cache --virtual .run-deps poppler-qt5 qt5-qtbase qt5-qtbase-sqlite &&\
+    rm -rf /var/cache/* &&\
+    /bootstrap.sh
 
-ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
 ENV LC_ALL=C.UTF8
-USER app
-
-ENTRYPOINT ["YACReaderLibraryServer","start"]
+ENTRYPOINT ["/entrypoint.sh"]
