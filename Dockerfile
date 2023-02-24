@@ -1,6 +1,7 @@
 FROM golang:1.19 AS builder
 WORKDIR /caddy
-RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
+RUN apk add --no-cache libcap &&\
+    go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/mholt/caddy-webdav    \
