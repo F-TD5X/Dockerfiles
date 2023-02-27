@@ -27,4 +27,4 @@ RUN apk --no-cache add ca-certificates vim && \
     addgroup -S app && adduser -S app -G app
 COPY --from=builder /caddy/caddy /usr/bin/caddy
 USER app
-CMD ["/usr/bin/caddy","--config","/data/Caddyfile","--watch"]
+CMD ["/usr/bin/caddy","--config","/caddy/Caddyfile","--watch"]
