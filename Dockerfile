@@ -19,6 +19,7 @@ RUN apk add --no-cache libcap &&\
     --with github.com/ueffel/caddy-brotli   \
     --with github.com/mohammed90/caddy-ssh@master  \
     --with github.com/imgk/caddy-trojan \
+    --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive \
     --output caddy
 
 FROM alpine:latest
