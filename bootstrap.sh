@@ -1,4 +1,6 @@
 #!/bin/sh
+rm -rf /config
+rm -rf /comics
 mkdir -p \
     /comics \
     /comics/.yacreaderlibrary \
@@ -8,6 +10,7 @@ if [ ! -f /config/.local/share/YACReader/YACReaderLibrary/YACReaderLibrary.ini ]
     cp /defaults/YACReaderLibrary.ini /config/.local/share/YACReader/YACReaderLibrary/YACReaderLibrary.ini
 fi
 
+rm -rf /defaults
 
 echo "
 0 * * * * YACReaderLibraryServer update-library /comics
