@@ -13,5 +13,5 @@ fi
 rm -rf /defaults
 
 echo "
-0 * * * * YACReaderLibraryServer update-library /comics
+0 */12 * * * YACReaderLibraryServer update-library /comics
 " > /var/spool/cron/crontabs/root
