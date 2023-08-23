@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER ftd5x
-ARG YACR_VERSION="9.11.0"
+ARG YACR_VERSION="9.13.0"
 ENV HOME="/config"
 
 COPY ./* /
