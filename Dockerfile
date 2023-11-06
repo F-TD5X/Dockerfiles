@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine AS builder
+FROM golang:alpine AS builder
 WORKDIR /caddy
 RUN apk add --no-cache libcap &&\
     go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
