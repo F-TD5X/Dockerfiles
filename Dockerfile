@@ -1,6 +1,6 @@
 FROM golang:alpine AS builder
 WORKDIR /caddy
-RUN apk add --no-cache libcap &&\
+RUN apk add --no-cache libcap git &&\
     go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
     --with github.com/caddy-dns/cloudflare  \
