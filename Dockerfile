@@ -20,7 +20,6 @@ RUN apk add --no-cache libcap git &&\
     --with github.com/techknowlogick/certmagic-s3 \
     --with github.com/abiosoft/caddy-json-schema \
     --with github.com/caddyserver/forwardproxy \
-    --with github.com/devetek/caddyserver-minifier@master \
     --output caddy
 
 FROM alpine:latest
