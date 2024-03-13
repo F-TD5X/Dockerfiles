@@ -6,10 +6,7 @@ RUN apk add --no-cache libcap &&\
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/mholt/caddy-webdav    \
     --with github.com/caddy-dns/route53     \
-    --with github.com/abiosoft/caddy-exec   \
-    --with github.com/greenpau/caddy-trace  \
     --with github.com/caddyserver/replace-response  \
-    --with github.com/caddyserver/ntlm-transport    \
     --with github.com/caddyserver/transform-encoder \
     --with github.com/aksdb/caddy-cgi/v2   \
     --with github.com/greenpau/caddy-security   \
@@ -17,8 +14,13 @@ RUN apk add --no-cache libcap &&\
     --with github.com/mholt/caddy-l4 \
     --with github.com/WingLim/caddy-webhook \
     --with github.com/ueffel/caddy-brotli   \
-    --with github.com/kadeessh/kadeessh@master  \
+    --with github.com/kadeessh/kadeessh@v0.0.2  \
     --with github.com/imgk/caddy-trojan \
+    --with github.com/abiosoft/caddy-yaml \
+    --with github.com/techknowlogick/certmagic-s3 \
+    --with github.com/abiosoft/caddy-json-schema \
+    --with github.com/caddyserver/forwardproxy \
+    --with github.com/devetek/caddyserver-minifier \
     --output caddy
 
 FROM alpine:latest
