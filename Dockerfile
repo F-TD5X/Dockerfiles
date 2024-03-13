@@ -27,7 +27,7 @@ FROM alpine:latest
 WORKDIR /caddy
 RUN apk --no-cache add ca-certificates vim && \
     addgroup -S app && adduser -S app -G app \
-    && mkdir /caddy && chown app:app -R /caddy
+    && mkdir -p /caddy && chown app:app -R /caddy
 COPY --from=builder /caddy/caddy /usr/bin/caddy
 USER app
 CMD ["/usr/bin/caddy","run","--config","/caddy/Caddyfile","--watch"]
