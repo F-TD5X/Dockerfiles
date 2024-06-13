@@ -14,7 +14,6 @@ RUN apk add --no-cache libcap git &&\
     --with github.com/mholt/caddy-l4 \
     --with github.com/WingLim/caddy-webhook \
     --with github.com/ueffel/caddy-brotli   \
-    --with github.com/kadeessh/kadeessh@v0.0.2  \
     --with github.com/imgk/caddy-trojan \
     --with github.com/abiosoft/caddy-yaml \
     --with github.com/ss098/certmagic-s3 \
