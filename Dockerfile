@@ -7,6 +7,7 @@ RUN apk add --no-cache libcap git &&\
     --with github.com/mholt/caddy-webdav    \
     --with github.com/caddy-dns/route53     \
     --with github.com/caddyserver/replace-response  \
+    --with github.com/ueffel/caddy-markdown-ex \
     --with github.com/caddyserver/transform-encoder \
     --with github.com/aksdb/caddy-cgi/v2   \
     --with github.com/greenpau/caddy-security   \
