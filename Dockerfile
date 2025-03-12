@@ -3,6 +3,7 @@ WORKDIR /caddy
 RUN apk add --no-cache libcap git &&\
     go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
     XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
+    --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/mholt/caddy-webdav    \
     --with github.com/caddy-dns/route53     \
@@ -23,10 +24,9 @@ RUN apk add --no-cache libcap git &&\
     --output caddy
 
 FROM alpine:latest
-WORKDIR /caddy
-RUN apk --no-cache add ca-certificates vim && \
-    addgroup -S app && adduser -S app -G app \
+RUN useradd --uid 1000 --create-home app && apk --no-cache add ca-certificates vim \
     && mkdir -p /caddy && chown app:app -R /caddy
 COPY --from=builder /caddy/caddy /usr/bin/caddy
+WORKDIR /caddy
 USER app
 CMD ["/usr/bin/caddy","run","--config","/caddy/Caddyfile","--watch"]
