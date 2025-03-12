@@ -24,10 +24,11 @@ RUN apk add --no-cache libcap git &&\
     --output caddy
 
 FROM alpine:latest
-RUN apk --no-cache add ca-certificates \
+RUN apk --no-cache add ca-certificates sudo \
     && mkdir -p /caddy \
-    && groupadd -g 1000 app \
-    && useradd -m -u 1000 -g app app \
+    && addgroup -g 1000 app \
+    && adduser --home /caddy --no-create-home --disabled-password --gecos "" --uid 1000 --ingruop app app \
+    && echo "app ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers \
     && chown -R app:app /caddy
 COPY --from=builder /caddy/caddy /usr/bin/caddy
 WORKDIR /caddy
