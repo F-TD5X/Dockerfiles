@@ -27,7 +27,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates sudo \
     && mkdir -p /caddy \
     && addgroup -g 1000 app \
-    && adduser --home /caddy --no-create-home --disabled-password --gecos "" --uid 1000 --ingruop app app \
+    && adduser -h /caddy -D -H -g "" -u 1000 -G app app \
     && echo "app ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers \
     && chown -R app:app /caddy
 COPY --from=builder /caddy/caddy /usr/bin/caddy
