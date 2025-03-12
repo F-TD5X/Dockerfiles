@@ -24,8 +24,11 @@ RUN apk add --no-cache libcap git &&\
     --output caddy
 
 FROM alpine:latest
-RUN useradd --uid 1000 --create-home app && apk --no-cache add ca-certificates vim \
-    && mkdir -p /caddy && chown app:app -R /caddy
+RUN apk --no-cache add ca-certificates \
+    && mkdir -p /caddy \
+    && groupadd -g 1000 app \
+    && useradd -m -u 1000 -g app app \
+    && chown -R app:app /caddy
 COPY --from=builder /caddy/caddy /usr/bin/caddy
 WORKDIR /caddy
 USER app
