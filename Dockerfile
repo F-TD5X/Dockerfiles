@@ -1,8 +1,12 @@
 FROM --platform=$BUILDPLATFORM golang:alpine AS builder
+ARG TARGETOS
+ARG TARGETARCH
 WORKDIR /caddy
-RUN apk add --no-cache libcap git &&\
-    go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && \
-    GOOS=linux GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
+RUN apk add --no-cache libcap git
+RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+RUN --mount=type=cache,target=/go/pkg/mod \
+    --mount=type=cache,target=/root/.cache/go-build \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/mholt/caddy-webdav    \
