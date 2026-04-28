@@ -26,6 +26,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@naive \
     --with github.com/sjtug/cerberus@dist \
     --with github.com/hadi77ir/caddy-websockify \
+    --with github.com/fabriziosalmi/caddy-waf \
     --output caddy
 
 FROM alpine:latest
