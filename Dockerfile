@@ -14,7 +14,6 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --with github.com/ueffel/caddy-markdown-ex \
     --with github.com/caddyserver/transform-encoder \
     --with github.com/aksdb/caddy-cgi/v2   \
-    --with github.com/greenpau/caddy-security   \
     --with github.com/abiosoft/caddy-json-parse \
     --with github.com/mholt/caddy-l4 \
     --with github.com/WingLim/caddy-webhook \
