@@ -29,6 +29,7 @@ RUN apk --no-cache add ca-certificates \
     && addgroup -g 10001 app \
     && adduser -h /caddy -D -H -g "" -u 10001 -G app app \
     && chown -R app:app /caddy
+    
 WORKDIR /caddy
 USER app
 CMD ["/usr/bin/caddy","run","--config","/caddy/Caddyfile","--watch"]
