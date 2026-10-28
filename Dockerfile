@@ -1,12 +1,13 @@
 FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 ARG TARGETOS
 ARG TARGETARCH
+ARG CADDY_VERSION=v2.11.7
 WORKDIR /caddy
 RUN apk add --no-cache libcap git
 RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    GOOS=$TARGETOS GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build ${CADDY_VERSION} \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build "${CADDY_VERSION}" \
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/caddyserver/replace-response  \
     --with github.com/ueffel/caddy-markdown-ex \
@@ -15,7 +16,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --with github.com/imgk/caddy-trojan \
     --with github.com/abiosoft/caddy-json-schema \
     --with github.com/mholt/caddy-ratelimit \
-    --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@v2.11.7-naive \
+    --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@c096d6a00cb28e019cc1995b04bdc6a9311d8024 \
     --with github.com/sjtug/cerberus@dist \
     --output caddy
 

@@ -2,7 +2,7 @@ name: caddy
 
 on:
   workflow_dispatch:
-    input:
+    inputs:
       caddy_version:
         description: "Caddy version tag"
         required: false
