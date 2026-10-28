@@ -6,7 +6,7 @@ RUN apk add --no-cache libcap git
 RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    GOOS=$TARGETOS GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH XCADDY_SETCAP=1 XCADDY_GO_BUILD_FLAGS="-ldflags '-w -s'" $GOPATH/bin/xcaddy build ${CADDY_VERSION} \
     --with github.com/caddy-dns/cloudflare  \
     --with github.com/caddyserver/replace-response  \
     --with github.com/ueffel/caddy-markdown-ex \
@@ -29,7 +29,7 @@ RUN apk --no-cache add ca-certificates \
     && addgroup -g 10001 app \
     && adduser -h /caddy -D -H -g "" -u 10001 -G app app \
     && chown -R app:app /caddy
-    
+
 WORKDIR /caddy
 USER app
 CMD ["/usr/bin/caddy","run","--config","/caddy/Caddyfile","--watch"]

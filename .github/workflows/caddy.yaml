@@ -2,6 +2,11 @@ name: caddy
 
 on:
   workflow_dispatch:
+    input:
+      caddy_version:
+        description: "Caddy version tag"
+        required: false
+        default: "v2.11.7"
   push:
     branches:
       - caddy
@@ -12,6 +17,7 @@ permissions:
 
 env:
   IMAGE_NAME: ghcr.io/f-td5x/caddy
+  CADDY_VERSION: ${{ inputs.caddy_version ||'v2.11.7' }}
 
 jobs:
   build:
@@ -55,6 +61,8 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           push: true
+          build-args: |
+            CADDY_VERSION=${{ env.CADDY_VERSION }}
           outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -100,6 +108,7 @@ jobs:
         run: |
           docker buildx imagetools create \
             -t "${{ env.IMAGE_NAME }}:latest" \
+            -t "${{ env.IMAGE_NAME }}:${{ env.CADDY_VERSION }}" \
             $(printf '${{ env.IMAGE_NAME }}@sha256:%s ' *)
 
       - name: Inspect image
