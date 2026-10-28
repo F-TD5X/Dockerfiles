@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --with github.com/imgk/caddy-trojan \
     --with github.com/abiosoft/caddy-json-schema \
     --with github.com/mholt/caddy-ratelimit \
-    --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@naive \
+    --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@v2.11.7-naive \
     --with github.com/sjtug/cerberus@dist \
     --output caddy
 
