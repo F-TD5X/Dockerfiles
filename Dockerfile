@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --with github.com/ueffel/caddy-markdown-ex \
     --with github.com/mholt/caddy-l4 \
     --with github.com/ueffel/caddy-brotli   \
-    --with github.com/imgk/caddy-trojan \
+    --with github.com/F-TD5X/caddy-trojan \
     --with github.com/abiosoft/caddy-json-schema \
     --with github.com/mholt/caddy-ratelimit \
     --with github.com/caddyserver/forwardproxy=github.com/klzgrad/forwardproxy@c096d6a00cb28e019cc1995b04bdc6a9311d8024 \
